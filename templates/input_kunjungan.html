@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% set page_title = 'Input Data Kunjungan' %}
+
+{% block content %}
+
+
+<div class="mx-auto my-4 p-4 bg-white rounded-4 shadow-sm" style="max-width:900px;">
+    <div class="bg-dark-blue rounded-3 text-center py-3 mb-4">
+        <h2 class="mb-0">📝 Input Data Kunjungan</h2>
+    </div>
+    <form action="{{ url_for('input_kunjungan') }}" method="POST" enctype="multipart/form-data">
+        <div class="row g-4">
+            <!-- Data Company -->
+            <div class="col-md-6">
+                <h5 class="mb-3 text-dark-blue">🏢 Data Company</h5>
+                <div class="mb-3">
+                    <label for="nama_company" class="form-label">Nama Company *</label>
+                    <input type="text" class="form-control" name="nama_company" id="nama_company" required>
+                </div>
+                <div class="mb-3">
+                    <label for="kontak_nama" class="form-label">Nama Kontak *</label>
+                    <input type="text" class="form-control" name="kontak_nama" id="kontak_nama" required>
+                </div>
+                <div class="mb-3">
+                    <label for="jabatan" class="form-label">Posisi/Jabatan *</label>
+                    <input type="text" class="form-control" name="jabatan" id="jabatan" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telepon" class="form-label">Nomor Telepon *</label>
+                    <input type="text" class="form-control" name="telepon" id="telepon" required>
+                </div>
+            </div>
+            <!-- Detail Kunjungan -->
+            <div class="col-md-6">
+                <h5 class="mb-3 text-dark-blue">📅 Detail Kunjungan</h5>
+                <div class="mb-3">
+                    <label for="tanggal_kunjungan" class="form-label">Tanggal Kunjungan *</label>
+                    <input type="date" class="form-control" name="tanggal_kunjungan" id="tanggal_kunjungan" required>
+                </div>
+                <div class="mb-3">
+                    <label for="waktu_kunjungan" class="form-label">Waktu Kunjungan *</label>
+                    <input type="time" class="form-control" name="waktu_kunjungan" id="waktu_kunjungan" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tujuan_kunjungan" class="form-label">Purpose *</label>
+                    <select class="form-select" name="tujuan_kunjungan" id="tujuan_kunjungan" required>
+                        <option disabled selected>Pilih tujuan...</option>
+                        <option>Rekonsiliasi Piutang</option>
+                        <option>Penyampaian Souvenir</option>
+                        <option>Diskusi Tagihan Bermasalah</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="tipe_kunjungan" class="form-label">Tipe Kunjungan</label>
+                    <input type="text" class="form-control" name="tipe_kunjungan" id="tipe_kunjungan" value="Kunjungan oleh Staff 1" readonly>
+                </div>
+            </div>
+        </div>
+        <!-- Informasi Tambahan -->
+        <div class="mt-4">
+            <h5 class="mb-3 text-dark-blue">📝 Informasi Tambahan</h5>
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes/Keterangan (Opsional)</label>
+                <textarea class="form-control" name="notes" id="notes" rows="4" placeholder="Catatan tambahan tentang kunjungan..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="foto" class="form-label">Upload Foto (Opsional)</label>
+                <div class="border border-2 border-secondary rounded-3 p-3 text-center text-muted bg-light mb-2">
+                    Drag and drop file here<br>Limit 200MB per file - PNG, JPG, JPEG
+                </div>
+                <input type="file" class="form-control" name="foto" id="foto">
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2">💾 Simpan Data Kunjungan</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

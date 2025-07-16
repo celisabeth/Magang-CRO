@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% set page_title = 'Visualisasi Data' %}
+{% block content %}
+<div class="mx-auto my-4 p-4 bg-white rounded-4 shadow-sm fade-in" style="max-width:900px;">
+  <div class="d-flex align-items-center gap-2 mb-4">
+    <span class="fs-3 text-dark-blue"><i class="fa-solid fa-chart-column"></i></span>
+    <h2 class="mb-0 fw-bold text-dark-blue flex-grow-1" style="font-size:1.5rem;">Visualisasi Data Kunjungan</h2>
+  </div>
+  <div class="row g-4">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3"><i class="fa-solid fa-calendar-days text-primary me-2"></i>Jumlah Kunjungan per Bulan</h5>
+          <canvas id="kunjunganPerBulan"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3"><i class="fa-solid fa-bullseye text-success me-2"></i>Distribusi Tujuan Kunjungan</h5>
+          <canvas id="tujuanPie"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Data dari backend
+    const bulanLabels = JSON.parse('{{ bulan_labels|tojson|safe }}');
+    const bulanValues = JSON.parse('{{ bulan_values|tojson|safe }}');
+    const tujuanLabels = JSON.parse('{{ tujuan_labels|tojson|safe }}');
+    const tujuanValues = JSON.parse('{{ tujuan_values|tojson|safe }}');
+
+    // Chart: Kunjungan per Bulan
+    new Chart(document.getElementById('kunjunganPerBulan'), {
+        type: 'bar',
+        data: {
+            labels: bulanLabels,
+            datasets: [{
+                label: 'Jumlah Kunjungan',
+                data: bulanValues,
+                backgroundColor: '#1e3a8a',
+                borderRadius: 8,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+    // Chart: Distribusi Tujuan
+    new Chart(document.getElementById('tujuanPie'), {
+        type: 'pie',
+        data: {
+            labels: tujuanLabels,
+            datasets: [{
+                data: tujuanValues,
+                backgroundColor: ['#1e3a8a','#60a5fa','#22d3ee','#fbbf24','#f87171','#a78bfa'],
+            }]
+        },
+        options: { responsive: true }
+    });
+</script>
+{% endblock %}
+                    backgroundColor: '#2563eb',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // Chart: Pie Tujuan
+        new Chart(document.getElementById('tujuanPie'), {
+            type: 'pie',
+            data: {
+                labels: tujuanLabels,
+                datasets: [{
+                    data: tujuanValues,
+                    backgroundColor: [
+                        '#2563eb', '#f59e42', '#10b981', '#f43f5e', '#a21caf', '#eab308', '#0ea5e9', '#64748b'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+    </script>
+</body>
+</html>

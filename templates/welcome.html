@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - KTB Control Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="welcome-box">
+            <div class="header">
+                <h1>Welcome {{ username }} ({{ role }})</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/input_kunjungan">Input Kunjungan</a></li>
+                    <li><a href="/data_management">Data Management</a></li>
+                    <li><a href="/visualisasi">Visualisasi</a></li>
+                    <li><a href="/monitoring_pembayaran">Monitoring Pembayaran</a></li>
+                </ul>
+            </div>
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

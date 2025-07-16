@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% set page_title = 'Edit Kunjungan' %}
+{% block content %}
+<div class="mx-auto my-4 p-4 bg-white rounded-4 shadow-sm fade-in" style="max-width:600px;">
+  <div class="d-flex align-items-center gap-2 mb-4">
+    <span class="fs-3 text-dark-blue"><i class="fa-solid fa-pen-to-square"></i></span>
+    <h2 class="mb-0 fw-bold text-dark-blue flex-grow-1" style="font-size:1.5rem;">Edit Data Kunjungan</h2>
+  </div>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Nama Company</label>
+      <input type="text" class="form-control" name="nama_company" value="{{ kunjungan['nama_company'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Kontak Nama</label>
+      <input type="text" class="form-control" name="kontak_nama" value="{{ kunjungan['kontak_nama'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Tanggal Kunjungan</label>
+      <input type="date" class="form-control" name="tanggal_kunjungan" value="{{ kunjungan['tanggal_kunjungan'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Waktu Kunjungan</label>
+      <input type="time" class="form-control" name="waktu_kunjungan" value="{{ kunjungan['waktu_kunjungan'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Tujuan Kunjungan</label>
+      <input type="text" class="form-control" name="tujuan_kunjungan" value="{{ kunjungan['tujuan_kunjungan'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Notes</label>
+      <textarea class="form-control" name="notes">{{ kunjungan['notes'] }}</textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary px-4 py-2"><i class="fa-solid fa-floppy-disk me-2"></i>Simpan Perubahan</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
